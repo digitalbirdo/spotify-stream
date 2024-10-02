@@ -1,0 +1,23 @@
+services:
+  spotify-stream:
+    container_name: spotify-stream
+    environment:
+    - LIBRESPOT_DEVICE_NAME=Daemon
+    # possible values: audiodongle, avr, computer, smartphone, speaker, stb, tablet, tv
+    - LIBRESPOT_DEVICE_TYPE=computer
+    - LIBRESPOT_CACHE=/spotify-stream/cache
+    - LIBRESPOT_INITIAL_VOLUME=90
+    - LIBRESPOT_ZEROCONF_PORT=1234
+    - ICECAST_ADMIN=contact@domain.com
+    - ICECAST_HOSTNAME=10.1.1.34
+    - ICECAST_LOCATION=New\ York
+    - ICECAST_USERNAME=admin
+    - ICECAST_PASSWORD=spotify
+    - DARKICE_MOUNT_POINT=spotify
+    - DARKICE_NAME=Spotify\ Stream
+    - DARKICE_DESCRIPTION=Streaming\ Spotify\ in\ realtime
+    image: digitalbirdo/spotify-stream:latest
+    network_mode: host
+    restart: unless-stopped
+    volumes:
+    - ./cache:/spotify-stream/cache
